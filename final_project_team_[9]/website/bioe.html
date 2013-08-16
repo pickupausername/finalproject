@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<head>
+  
+
+  
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	
+	<title>Biomedical engineering company information</title>
+	
+	<link rel='stylesheet' type='text/css' href='css/style.css' />
+  	
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+ 
+  <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=true'></script>
+ 
+  
+  <script type='text/javascript'>
+  
+    $(function() {
+    
+      var chicago = new google.maps.LatLng(41.924832, -87.697456),
+          pointToMoveTo, 
+          first = true,
+          curMarker = new google.maps.Marker({}),
+          $el;
+      
+      var myOptions = {
+          zoom: 10,
+          center: chicago,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+      
+      var map = new google.maps.Map($("#map_canvas")[0], myOptions);
+    
+      $("#locations li").mouseenter(function() {
+      
+        $el = $(this);
+                
+        if (!$el.hasClass("hover")) {
+        
+          $("#locations li").removeClass("hover");
+          $el.addClass("hover");
+        
+          if (!first) { 
+            
+            // Clear current marker
+            curMarker.setMap(); 
+            
+            // Set zoom back to Chicago level
+            // map.setZoom(10);
+          }
+          
+          // Move (pan) map to new location
+          pointToMoveTo = new google.maps.LatLng($el.attr("data-geo-lat"), $el.attr("data-geo-long"));
+          map.panTo(pointToMoveTo);
+          
+          // Add new marker
+          curMarker = new google.maps.Marker({
+              position: pointToMoveTo,
+              map: map,
+              icon: "images/marker.png"
+          });
+          
+          // On click, zoom map
+          google.maps.event.addListener(curMarker, 'click', function() {
+             map.setZoom(14);
+          });
+          
+          // Fill more info area
+          $("#more-info")
+            .find("h2")
+              .html($el.find("h3").html())
+              .end()
+            .find("p")
+              .html($el.find(".longdesc").html());
+          
+          // No longer the first time through (re: marker clearing)        
+          first = false; 
+        }
+        
+      });
+      
+      $("#locations li:first").trigger("mouseenter");
+      $(function(){
+    $('.longdesc').jscrollbar({
+         //some options
+         width:12, //滚动条宽度
+            color:'orange', //滚动条颜色
+            opacity:0.7, //透明度
+            position:'inner',//滚动条位置
+            mouseScrollDirection:'horizontal' //鼠标滚动时滚动的方向
+    });
+});
+      
+    });
+
+  </script>
+
+
+</head>
+
+<body>
+
+	<div id="page-wrap">
+	
+	   <h1>Biomedical engineering company information</h1>
+	   
+	   <ul id="locations">
+	   
+        <li data-geo-lat="37.410034" data-geo-long="-122.015553">
+        <h3>Aptus Endosystems</h3>
+         
+         
+     
+  <p class="longdesc" style="width:1300px;height:600px;">
+
+            <strong>About:</strong> Headquartered in Sunnyvale, California, Aptus Endosystems is a privately held medical device company engaged in developing and manufacturing advanced technology for endovascular aneurysm repair (EVAR).
+          <a href="http://www.aptusendosystems.com/about-main.html">click me to read more</a>
+</p>
+        </li>
+        
+        <li data-geo-lat="39.304583" data-geo-long="-84.4198">
+          <h3>Atricure</h3>
+          
+          <p class="longdesc"><strong>About:</strong> AtriCure has been recognized for its global leadership in fostering and implementing innovation of surgical devices. Headquartered near Cincinnati, Ohio, AtriCure has assembled experts in the medical device industry to form a highly effective team dedicated to serving patients, medical professionals, and investors. <a href="http://www.atricure.com/">click me to read more</a></p>
+        </li>
+        
+        <li data-geo-lat="37.482078" data-geo-long="-122.150274">
+          <h3>CardioKinetix</h3>
+   
+          <p class="longdesc"><strong>About:</strong> CardioKinetix is an early stage medical device company developing proprietary devices for the treatment of heart failure.<a href="http://www.cardiokinetix.com/">click me to read more</a></p>
+        </li>
+        
+        
+     </ul>
+
+     <div id="map_canvas"></div>
+     
+     <div id="more-info"><div>
+     
+        <h2>More Info</h2>
+        <p>Hover over location on the left. (JavaScript must be enabled)</p>
+     
+     </div></div>
+			
+	</div>
+	
+</body>
+
+</html>

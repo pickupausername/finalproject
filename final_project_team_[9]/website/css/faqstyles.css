@@ -1,0 +1,256 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	font-size:13px;
+	color:#eee;
+	font-family:Arial, Helvetica, sans-serif;
+	background:url('img/bg.jpg') repeat-x #2b3743;
+	font-family:Corbel,'Myriad Pro',Arial, Helvetica, sans-serif;
+}
+#author{
+	text-align: right;
+}
+
+#page{
+	width:900px;
+	margin:auto;
+}
+
+#headingSection{
+	background-color:#7b8b98;
+	padding:40px;
+	padding-left:60px;
+	position:relative;
+	border:1px solid #8b9ba7;
+	border-bottom:none;
+}
+
+#faqSection{
+	background:url('img/ranking_background.jpg');
+	padding:20px 90px 60px 130px;
+	border:1px solid white;
+	text-shadow:1px 1px 0 white;
+}
+
+h1{
+	color:#fff;
+	font-size:36px;
+	font-weight:normal;
+}
+
+/* The expand / collapse button Download by http://www.codefans.net*/
+
+a.button{
+	background:url('img/buttons.png') no-repeat;
+	width:80px;
+	height:38px;
+	position:absolute;
+	right:50px;
+	top:45px;
+	text-indent:-9999px;
+	overflow:hidden;
+	border:none !important;
+}
+
+a.button.expand:hover{ background-position:0 -38px;}
+a.button.collapse{ background-position:0 -76px;}
+a.button.collapse:hover{ background-position:0 bottom;}
+
+/* Definition Lists */
+
+dt{
+	color:#8F9AA3;
+	font-size:25px;
+	margin-top:30px;
+	padding-left:25px;
+	position:relative;
+	cursor:pointer;
+	border:1px solid transparent;
+}
+
+dt:hover{ color:#5f6a73;}
+
+dt .icon{
+	background:url('img/bullets.png') no-repeat;
+	height:12px;
+	left:0;
+	position:absolute;
+	top:11px;
+	width:12px;
+}
+
+dt.opened .icon{ background-position:left bottom;}
+
+dd{
+	font-size:14px;
+	color:#717f89;
+	line-height:1.5;
+	padding:20px 0 0 25px;
+	width:580px;
+	display:none;
+}
+
+
+/* Only Needed For The Demo Page */
+
+
+p.createdBy{
+	font-size:15px;
+	font-weight:normal;
+	margin:50px;
+	text-align:center;
+	text-shadow:none;
+}
+
+a, a:visited {
+	text-decoration:none;
+	outline:none;
+	border-bottom:1px dotted #97cae6;
+	color:#97cae6;
+}
+
+a:hover{
+	border-bottom:1px dashed transparent;
+}
+
+#email{
+	margin-top: 50px;
+	color: black;
+	text-align: center;
+	font-size: 25px;
+}
+.aa { color: #eee; }
+.aa:hover { color: white; }
+
+#main{
+	position:relative;
+	margin:auto;
+	height: 90%;
+	min-height: 200px;
+	border: dashed white 2px;
+}
+
+.nav-wrap { 
+	background-color: rgba(0,0,0,0.6); 
+	border-top:    2px solid white; 
+	border-bottom: 2px solid white; 
+	margin:auto;
+	width: 900px;
+	position: relative;
+}
+
+.footer { 
+	position:relative;
+	float: bottom; 
+	clear: both;
+	margin-bottom: 0px;
+	height:18px;
+	padding:10px;
+	text-align: center;
+	background-color: rgba(0,0,0,0.6); 
+	border-top:    2px solid white; 
+	border-bottom: 2px solid white; 
+	width: 880px;
+	margin-top: -14px;
+}
+
+#copyright { 
+	color: #bbb; 
+	font-size: 30px; 
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+/* Clearfix */
+.group:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
+*:first-child+html .group { zoom: 1; } /* IE7 */
+
+
+
+/* Example One */
+#example-one { 
+	margin: 0 auto; 
+	list-style: none; 
+	position: relative; 
+	width: 960px;
+}
+#example-one li { 
+	display: inline-block;	
+}
+#example-one a { 
+	color: #bbb; 
+	font-size: 14px; 
+	float: left;
+	padding: 6px 10px 4px 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+#example-one a:hover { 
+	color: white; 
+}
+#magic-line { 
+	position: absolute;
+	bottom: -2px; 
+	left: 0; 
+	width: 100px; 
+	height: 2px; 
+	background: #fe4902;
+}
+.current_page_item a { 
+	color: white !important; 
+}
+.ie6 #example-one li, .ie7 #example-one li { 
+	display: inline; 
+}
+.ie6 #magic-line {
+	bottom: -3px;
+}
+
+
+/* Example Two */
+#example-two { 
+	margin: 0 auto; 
+	list-style: none; 
+	position: relative; 
+	width: 960px; 
+}
+#example-two li { 
+	display: inline-block; 
+}
+#example-two li a { 
+	position: relative; 
+	z-index: 200; 
+	color: #bbb; 
+	font-size: 14px; 
+	display: block; 
+	float: left; 
+	padding: 6px 10px 4px 10px;
+	text-decoration: none;
+	text-transform: uppercase; 
+}
+#example-two li a:hover { 
+	color: white; 
+}
+#example-two #magic-line-two { 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: 100px; 
+	background: #900; 
+	z-index: 100; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.current_page_item_two a { 
+	color: white !important; 
+}
+.ie6 #example-two li, .ie7 #example-two li {
+	display: inline;
+}
+*{
+	font-family: cursive;
+}

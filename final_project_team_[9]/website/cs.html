@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+  
+
+  
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	
+	<title>Computer Science company information</title>
+	
+	<link rel='stylesheet' type='text/css' href='css/style.css' />
+  	
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+ 
+  <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=true'></script>
+ 
+  
+  <script type='text/javascript'>
+  
+    $(function() {
+    
+      var chicago = new google.maps.LatLng(41.924832, -87.697456),
+          pointToMoveTo, 
+          first = true,
+          curMarker = new google.maps.Marker({}),
+          $el;
+      
+      var myOptions = {
+          zoom: 10,
+          center: chicago,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+      
+      var map = new google.maps.Map($("#map_canvas")[0], myOptions);
+    
+      $("#locations li").mouseenter(function() {
+      
+        $el = $(this);
+                
+        if (!$el.hasClass("hover")) {
+        
+          $("#locations li").removeClass("hover");
+          $el.addClass("hover");
+        
+          if (!first) { 
+            
+            // Clear current marker
+            curMarker.setMap(); 
+            
+            // Set zoom back to Chicago level
+            // map.setZoom(10);
+          }
+          
+          // Move (pan) map to new location
+          pointToMoveTo = new google.maps.LatLng($el.attr("data-geo-lat"), $el.attr("data-geo-long"));
+          map.panTo(pointToMoveTo);
+          
+          // Add new marker
+          curMarker = new google.maps.Marker({
+              position: pointToMoveTo,
+              map: map,
+              icon: "images/marker.png"
+          });
+          
+          // On click, zoom map
+          google.maps.event.addListener(curMarker, 'click', function() {
+             map.setZoom(14);
+          });
+          
+          // Fill more info area
+          $("#more-info")
+            .find("h2")
+              .html($el.find("h3").html())
+              .end()
+            .find("p")
+              .html($el.find(".longdesc").html());
+          
+          // No longer the first time through (re: marker clearing)        
+          first = false; 
+        }
+        
+      });
+      
+      $("#locations li:first").trigger("mouseenter");
+      $(function(){
+    $('.longdesc').jscrollbar({
+         //some options
+         width:12, //滚动条宽度
+            color:'orange', //滚动条颜色
+            opacity:0.7, //透明度
+            position:'inner',//滚动条位置
+            mouseScrollDirection:'horizontal' //鼠标滚动时滚动的方向
+    });
+});
+      
+    });
+
+  </script>
+
+
+</head>
+
+<body>
+
+	<div id="page-wrap">
+	
+	   <h1>Computer Science company information</h1>
+	   
+	   <ul id="locations">
+	   
+       
+        
+        <li data-geo-lat="38.659778" data-geo-long="-121.474671">
+          <h3>IBM</h3>
+          
+          <p class="longdesc"><strong>About:</strong> The International Business Machines Corporation (commonly referred as IBM) is an American multinational technology and consulting corporation, with headquarters in Armonk, New York, United States. IBM manufactures and markets computer hardware and software, and offers infrastructure, hosting and consulting services in areas ranging from mainframe computers to nanotechnology.The company was founded in 1911 as the Computing Tabulating Recording Company (CTR) through a merger of three companies: the Tabulating Machine Company, the International Time Recording Company, and the Computing Scale Company.  <a href="http://en.wikipedia.org/wiki/IBM">click me to read more</a></p>
+        </li>
+        
+        <li data-geo-lat="30.483851" data-geo-long="-97.661803">
+          <h3>DELL</h3>
+   
+          <p class="longdesc"><strong>About:</strong> Dell Inc. (formerly Dell Computer) is an American multinational computer technology corporation based in Round Rock, Texas, United States, that develops, sells, repairs and supports computers and related products and services. Bearing the name of its founder, Michael Dell, the company is one of the largest technological corporations in the world, employing more than 103,300 people worldwide.Dell is listed at number 51 in the Fortune 500 list. In 2012 it was the third largest PC vendor in the world after HP and Lenovo. <a href="http://en.wikipedia.org/wiki/DELL">click me to read more</a></p>
+        </li>
+        
+        <li data-geo-lat="37.3323" data-geo-long="-122.02949000000001">
+
+          <h3>APPLE</h3>
+          
+          <p class="longdesc"><strong>About:</strong> Apple Inc., formerly Apple Computer, Inc., is an American multinational corporation headquartered in Cupertino, California that designs, develops, and sells consumer electronics, computer software and personal computers. Its best-known hardware products are the Mac line of computers, the iPod music player, the iPhone smartphone, and the iPad tablet computer. Its consumer software includes the OS X and iOS operating systems, the iTunes media browser, the Safari web browser, and the iLife and iWork creativity and production suites. <a href="http://en.wikipedia.org/wiki/Apple_inc">click me to read more</a></p>
+        </li>
+        
+     </ul>
+
+     <div id="map_canvas"></div>
+     
+     <div id="more-info"><div>
+     
+        <h2>More Info</h2>
+        <p>Hover over location on the left. (JavaScript must be enabled)</p>
+     
+     </div></div>
+			
+	</div>
+	
+</body>
+
+</html>

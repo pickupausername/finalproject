@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head>
+  
+
+  
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	
+	<title>Civil Engineering company information</title>
+	
+	<link rel='stylesheet' type='text/css' href='css/style.css' />
+  	
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+ 
+  <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=true'></script>
+ 
+  
+  <script type='text/javascript'>
+  
+    $(function() {
+    
+      var chicago = new google.maps.LatLng(41.924832, -87.697456),
+          pointToMoveTo, 
+          first = true,
+          curMarker = new google.maps.Marker({}),
+          $el;
+      
+      var myOptions = {
+          zoom: 10,
+          center: chicago,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+      
+      var map = new google.maps.Map($("#map_canvas")[0], myOptions);
+    
+      $("#locations li").mouseenter(function() {
+      
+        $el = $(this);
+                
+        if (!$el.hasClass("hover")) {
+        
+          $("#locations li").removeClass("hover");
+          $el.addClass("hover");
+        
+          if (!first) { 
+            
+            // Clear current marker
+            curMarker.setMap(); 
+            
+            // Set zoom back to Chicago level
+            // map.setZoom(10);
+          }
+          
+          // Move (pan) map to new location
+          pointToMoveTo = new google.maps.LatLng($el.attr("data-geo-lat"), $el.attr("data-geo-long"));
+          map.panTo(pointToMoveTo);
+          
+          // Add new marker
+          curMarker = new google.maps.Marker({
+              position: pointToMoveTo,
+              map: map,
+              icon: "images/marker.png"
+          });
+          
+          // On click, zoom map
+          google.maps.event.addListener(curMarker, 'click', function() {
+             map.setZoom(14);
+          });
+          
+          // Fill more info area
+          $("#more-info")
+            .find("h2")
+              .html($el.find("h3").html())
+              .end()
+            .find("p")
+              .html($el.find(".longdesc").html());
+          
+          // No longer the first time through (re: marker clearing)        
+          first = false; 
+        }
+        
+      });
+      
+      $("#locations li:first").trigger("mouseenter");
+      $(function(){
+    $('.longdesc').jscrollbar({
+         //some options
+         width:12, //滚动条宽度
+            color:'orange', //滚动条颜色
+            opacity:0.7, //透明度
+            position:'inner',//滚动条位置
+            mouseScrollDirection:'horizontal' //鼠标滚动时滚动的方向
+    });
+});
+      
+    });
+
+  </script>
+
+
+</head>
+
+<body>
+
+	<div id="page-wrap">
+	
+	   <h1>Civil Engineering company information</h1>
+	   
+	   <ul id="locations">
+	   
+        <li data-geo-lat="40.524353" data-geo-long="-80.173693">
+        <h3>American Bridge Company</h3>
+         
+         
+     
+  <p class="longdesc" style="width:1300px;height:600px;">
+
+            <strong>About:</strong> The American Bridge Company is a privately held civil engineering firm that specializes in building and renovating bridges and other large civil engineering projects. Founded in 1900, the company is headquartered in Coraopolis, Pennsylvania, a suburb of Pittsburgh.
+The firm has built many bridges in the U.S. and elsewhere; the Historic American Engineering Record at the Library of Congress notes at least 81.Among its other projects, American Bridge has built or helped build the Willis Tower, and more. 
+          <a href="http://en.wikipedia.org/wiki/index.html?curid=3519489">click me to read more</a>
+</p>
+        </li>
+        
+        <li data-geo-lat="36.597645" data-geo-long="-81.02814">
+          <h3>Balfour Beatty</h3>
+          
+          <p class="longdesc"><strong>About:</strong> Balfour Beatty plc (LSE: BBY) is a British construction, engineering, military housing, rail and investment services company. It is one of the largest construction companies in the UK, and the 15th largest in the world. It is a constituent of the FTSE 250 Index. Balfour Beatty works for customers principally in the UK, the US, South-East Asia, Australia and the Middle East. Balfour Beatty was founded in 1909 by George<a href="http://en.wikipedia.org/wiki/index.html?curid=3199610">click me to read more</a></p>
+        </li>
+        
+        <li data-geo-lat="29.534965" data-geo-long="-82.52228">
+          <h3>Bayside Engineering, Inc.</h3>
+   
+          <p class="longdesc"><strong>About:</strong> Bayside Engineering, Inc. was founded in 1994 by three civil engineers dedicated to serving not only their clients and their profession but to a vision that superior engineering is accomplished through teamwork. It is with this vision that the founders of Bayside created an organization that is built on diversity, respect and passion. Today, with 32 employees, these core values are the guiding principles of the firm.<a href="http://www.baysideng.com/">click me to read more</a></p>
+        </li>
+        
+        
+     </ul>
+
+     <div id="map_canvas"></div>
+     
+     <div id="more-info"><div>
+     
+        <h2>More Info</h2>
+        <p>Hover over location on the left. (JavaScript must be enabled)</p>
+     
+     </div></div>
+			
+	</div>
+	
+</body>
+
+</html>
